@@ -63,10 +63,8 @@ const characters = Promise.resolve([
     character("Chance", "Jununa", "Hellscream"),
 ])
 
-app.use(Express.static(join(__dirname, "static")))
-app.engine("pug", Pug)
-app.set("view engine", "pug")
-app.get("/", (_, res) => {
+app.use(Express.static(join(__dirname, "public")))
+app.get("/characters", (_, res) => {
     characters.map(({ player, character, realm }) => {
         return fetch(`https://us.api.battle.net/wow/character/${realm}/${escape(character)}?fields=items&fields=talents&apikey=${apikey}`)
             .call("json")
@@ -81,10 +79,7 @@ app.get("/", (_, res) => {
         gear: gearFor(character.class),
         ilvl: Number(character.items.averageItemLevelEquipped)
     }))
-    .then((characters) => res.render("index", {
-        characters,
-        avg: Math.floor(characters.reduce((acc, { ilvl }) => acc + ilvl, 0) / characters.length)
-    }))
+    .then((characters) => res.status(200).json(characters))
 })
 
 app.listen(3000)

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Viridian Raiders</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link href="main.css" rel="stylesheet">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.1/fetch.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.8/vue.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript">require("main.js")</script> 
+    </head>
+    <body>
+        <div id="container"></div>
+        <script type="text/x-template" id="viridian">
+            <div id="viridian-container">
+                <character-table :data="data" :columns="columns" />
+                <h4>Average iLvl — {{avg}}</h4>
+            </div>
+        </script>
+        <script type="text/x-template" id="character-table-template">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th v-for="(label, key) in columns"
+                            @click="sortBy(key)"
+                            :class="{ active: sortKey == key }">
+                            {{label}}
+                            <i class="fa" :class="sortOrders[key] > 0 ? 'fa-arrow-down': 'fa-arrow-up'"></i>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="entry in sortedData">
+                        <td v-for="(_, key) in columns">
+                            {{entry[key]}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </script>
+    </body>
+</html>

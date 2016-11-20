@@ -4,6 +4,7 @@
   "author": "Chance Dickson <me@chncdcksn.com>",
   "private": true,
   "dependencies": {
+    "babel-brunch": "^6.0.6",
     "bluebird": "^3.4.6",
     "express": "^4.14.0",
     "node-fetch": "^1.6.3",

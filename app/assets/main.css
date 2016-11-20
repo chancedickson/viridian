@@ -13,7 +13,7 @@ body {
     font-family: "Open Sans";
 }
 
-.viridian-container {
+#viridian-container {
     width: 100rem;
     background-color: white;
     padding: 20px;
@@ -21,8 +21,21 @@ body {
     flex-direction: column;
 }
 
+th {
+    user-select: none;
+}
+
+th:hover {
+    cursor: pointer;
+}
+
 h4 {
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+i {
+    float: right;
+    padding-top: 3px;
 }
