@@ -20,7 +20,6 @@ Vue.component("character-table", {
             let data = this.data.slice()
             if (sortKey) {
                 const sortOrder = this.sortOrders[sortKey]
-                console.log(this.sortOrders)
                 data = data.sort((a, b) => {
                     a = a[sortKey]
                     b = b[sortKey]
